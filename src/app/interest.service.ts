@@ -6,8 +6,8 @@ export class InterestService {
 
   constructor(private http: HttpClient) { }
 
-  getInterestRates(){
-    return this.http.get('https://my-json-server.typicode.com/pimvandepavoordt/fake-server/simpleList')
+  getInterestRates(interestPeriod: string){
+    return this.http.get('https://my-json-server.typicode.com/tdijkmans/MAGAPI/' + interestPeriod)
   }
 
 }

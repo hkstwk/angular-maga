@@ -1,17 +1,17 @@
-<!-- {{ interestRateList | json }} -->
-<div>
-  <ul *ngFor="let interestRate of interestRateList">
-    <li>{{ interestRate.rateClass }} : {{ interestRate.rate }}%</li>
-  </ul>
-</div>
-
 <hr>
-<div *ngFor="let rate of rates; let i = index">
-  <h4>{{ rate.Hypotheek }}</h4>
-  <ul>
-    <li>NHG - {{ rate.NHG }}</li>
-    <li>60% LTV - {{ rate['60%'] }}</li>
-    <li>80% LTV - {{ rate['80%'] }}</li>
-    <li>100% LTV - {{ rate['100%'] }}</li>
-  </ul>
+<label for="duration">Choose interest duration: </label>
+<select id="duration" (change)="changePeriod($event)">​
+    <option value="1_jaar">1 year</option>​
+    <option value="10_jaar">10 years</option>​
+    <option value="20_jaar">20 years</option>​
+    <option value="30_jaar">30 years</option>​
+</select>
+<div *ngFor="let rate of interestRateList">
+	<h4>{{ rate.Hypotheek }}</h4>
+	<ul>
+		<li>NHG - {{ rate.NHG }}</li>
+		<li>60% LTV - {{ rate['60%'] }}</li>
+		<li>80% LTV - {{ rate['80%'] }}</li>
+		<li>100% LTV - {{ rate['100%'] }}</li>
+	</ul>
 </div>

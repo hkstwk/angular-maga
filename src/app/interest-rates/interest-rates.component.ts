@@ -36,15 +36,16 @@ export class InterestRatesComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.interestService.getInterestRates().subscribe(interestRates => {
+    this.getInterestRates("1_jaar");
+  }
+
+  getInterestRates(period: string) {
+    this.interestService.getInterestRates(period).subscribe(interestRates => {
       this.interestRateList = interestRates;
     });
+  }
 
-    this.http
-      .get<any>("https://my-json-server.typicode.com/tdijkmans/MAGAPI/1_jaar")
-      .subscribe(resp => {
-        this.rates = resp;
-        console.log(JSON.stringify(resp));
-      });
+  changePeriod(event) {
+    this.getInterestRates(event.target.value);
   }
 }
