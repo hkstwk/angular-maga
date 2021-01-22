@@ -6,6 +6,8 @@
     <option value="20_jaar">20 years</option>​
     <option value="30_jaar">30 years</option>​
 </select>
+<span> --- </span>
+<input type="text" (change)="onSearchChange($event)" placeholder="Search provider..."> 
 <div *ngFor="let rate of interestRateList">
 	<h4>{{ rate.Hypotheek }}</h4>
 	<ul>

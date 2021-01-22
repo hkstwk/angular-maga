@@ -9,6 +9,7 @@ import { InterestService } from "../interest.service";
 })
 export class InterestRatesComponent implements OnInit {
   interestRateList;
+  search: string = '';
 
   constructor(
     private http: HttpClient,
@@ -27,5 +28,15 @@ export class InterestRatesComponent implements OnInit {
 
   changePeriod(event) {
     this.getInterestRates(event.target.value);
+    this
+  }
+
+  onSearchChange(event){
+    let searchValue =  event.target.value;
+    console.log(searchValue);
+    // this.interestRateList = 
+    this.interestRateList.filter(item =>​
+      item.Hypotheek.toLowerCase().includes(searchValue.toLowerCase())​
+    );​
   }
 }
