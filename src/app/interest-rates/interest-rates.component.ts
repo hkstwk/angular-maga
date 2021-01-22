@@ -9,7 +9,7 @@ import { InterestService } from "../interest.service";
 })
 export class InterestRatesComponent implements OnInit {
   interestRateList;
-  search: string = '';
+  searchValue: string = '';
 
   constructor(
     private http: HttpClient,
@@ -32,11 +32,10 @@ export class InterestRatesComponent implements OnInit {
   }
 
   onSearchChange(event){
-    let searchValue =  event.target.value;
-    console.log(searchValue);
-    // this.interestRateList = 
+    this.searchValue =  event.target.value;
+    console.log(this.searchValue);
     this.interestRateList.filter(item =>​
-      item.Hypotheek.toLowerCase().includes(searchValue.toLowerCase())​
+      item.Hypotheek.toLowerCase().includes(this.searchValue.toLowerCase())​
     );​
   }
 }
