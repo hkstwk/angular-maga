@@ -45,19 +45,26 @@ export class InterestRatesComponent implements OnInit {
   changePeriod(event) {
     this.interestRateList.splice(0);
     this.getInterestRates(event.target.value);
+    this.applyFilter();
   }
 
-  onSearchChange(event) {
+  private applyFilter(){
+    console.log('filter on = ' + this.searchValue);
+
     // restore unfiltered []
     this.interestRateList = this.interestRateListUnFiltered.slice();
 
-    // apply (new) filter
+    // apply filter
     this.interestRateList = this.interestRateList.filter(
       (interestData: InterestData) => {
         return interestData.Hypotheek.toLowerCase().includes(
-          event.target.value.toLowerCase()
-        );
+          this.searchValue.toLowerCase());
       }
-    );
+    )
+  }
+
+  onSearchChange(event) {
+    this.searchValue = event.target.value;
+    this.applyFilter();
   }
 }
