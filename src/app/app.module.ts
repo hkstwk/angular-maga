@@ -8,13 +8,15 @@ import { InterestRatesComponent } from "./interest-rates/interest-rates.componen
 import { AppRoutingModule } from "./app-routing.module";
 import { HttpClientModule } from "@angular/common/http";
 import { InterestService } from './interest.service';
+import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     
     DashboardComponent,
-    InterestRatesComponent
+    InterestRatesComponent,
+    LoadingSpinnerComponent
   ],
   imports: [
     BrowserModule, 

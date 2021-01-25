@@ -6,20 +6,21 @@
     <option value="30_jaar">30 years</option>​
 </select>
 <span> --- </span>
-<input type="text" (change)="onSearchChange($event)" placeholder="Search provider..."> 
-<table>
-  <tr>
-    <th>Geldverstrekker</th>
-    <th>NHG</th>
-    <th>60% LTV</th>
-    <th>80% LTV</th>
-    <th>100% LTV</th>
-  </tr>
-  <tr *ngFor="let rate of interestRateList">
-    <td>{{ rate.Hypotheek }}</td>
-    <td>{{ rate.NHG }}</td>
-    <td>{{ rate['60%'] }}</td>
-    <td>{{ rate['80%'] }}</td>
-    <td>{{ rate['100%'] }}</td>
-  </tr>
+<input type="text" (change)="onSearchChange($event)" [value]="searchValue" placeholder="Search provider...">
+<app-loading-spinner *ngIf="loading">fetching data... hang on!</app-loading-spinner>
+<table *ngIf="!loading">
+	<tr>
+		<th>Geldverstrekker</th>
+		<th>NHG</th>
+		<th>60% LTV</th>
+		<th>80% LTV</th>
+		<th>100% LTV</th>
+	</tr>
+	<tr *ngFor="let rate of interestRateList">
+		<td>{{ rate.Hypotheek }}</td>
+		<td>{{ rate.NHG }}</td>
+		<td>{{ rate['60%'] }}</td>
+		<td>{{ rate['80%'] }}</td>
+		<td>{{ rate['100%'] }}</td>
+	</tr>
 </table>

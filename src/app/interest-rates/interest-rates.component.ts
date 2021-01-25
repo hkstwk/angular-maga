@@ -22,6 +22,7 @@ export class InterestRatesComponent implements OnInit {
   interestRateList: InterestData[] = [];
   private interestRateListUnFiltered: InterestData[] = [];
   searchValue: string = "";
+  loading: boolean = false;
 
   constructor(
     private http: HttpClient,
@@ -33,6 +34,8 @@ export class InterestRatesComponent implements OnInit {
   }
 
   getInterestRates(period: string) {
+    this.loading = true;
+
     this.interestService
       .getInterestRates(period)
       .subscribe((interestRates: InterestData[]) => {
@@ -46,6 +49,8 @@ export class InterestRatesComponent implements OnInit {
           console.log("applying filter");
           this.applyFilter();
         }
+
+        this.loading = false;
       });
   }
 
