@@ -1,5 +1,7 @@
 import { HttpClient } from "@angular/common/http";
 import { Component, OnInit } from "@angular/core";
+import { pipe } from "rxjs";
+import { map } from "rxjs/operators";
 import { InterestService } from "../interest.service";
 
 interface InterestData {
@@ -39,18 +41,20 @@ export class InterestRatesComponent implements OnInit {
         }
         // Copy interestRate[] to unfiltered []
         this.interestRateListUnFiltered = this.interestRateList.slice();
+        // apply filter
+        if (this.searchValue != "") {
+          console.log("applying filter");
+          this.applyFilter();
+        }
       });
   }
 
   changePeriod(event) {
-    this.interestRateList.splice(0);
+    this.interestRateList = [];
     this.getInterestRates(event.target.value);
-    this.applyFilter();
   }
 
-  private applyFilter(){
-    console.log('filter on = ' + this.searchValue);
-
+  private applyFilter() {
     // restore unfiltered []
     this.interestRateList = this.interestRateListUnFiltered.slice();
 
@@ -58,9 +62,10 @@ export class InterestRatesComponent implements OnInit {
     this.interestRateList = this.interestRateList.filter(
       (interestData: InterestData) => {
         return interestData.Hypotheek.toLowerCase().includes(
-          this.searchValue.toLowerCase());
+          this.searchValue.toLowerCase()
+        );
       }
-    )
+    );
   }
 
   onSearchChange(event) {
