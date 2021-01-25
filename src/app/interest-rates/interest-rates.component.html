@@ -6,7 +6,7 @@
     <option value="30_jaar">30 years</option>​
 </select>
 <span> --- </span>
-<input type="text" (change)="onSearchChange($event)" [value]="searchValue" placeholder="Search provider...">
+<input type="text" (input)="onSearchChange($event)" [value]="searchValue" placeholder="Search provider...">
 <app-loading-spinner *ngIf="loading">fetching data... hang on!</app-loading-spinner>
 <table *ngIf="!loading">
 	<tr>
