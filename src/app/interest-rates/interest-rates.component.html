@@ -1,26 +1,39 @@
-<label for="duration">Choose interest duration: </label>
-<select id="duration" (change)="changePeriod($event)">​
-    <option value="1_jaar">1 year</option>​
-    <option value="10_jaar">10 years</option>​
-    <option value="20_jaar">20 years</option>​
-    <option value="30_jaar">30 years</option>​
-</select>
-<span> --- </span>
-<input type="text" (input)="onSearchChange($event)" [value]="searchValue" placeholder="Search provider...">
-<app-loading-spinner *ngIf="loading">fetching data... hang on!</app-loading-spinner>
-<table *ngIf="!loading">
-	<tr>
-		<th>Geldverstrekker</th>
-		<th>NHG</th>
-		<th>60% LTV</th>
-		<th>80% LTV</th>
-		<th>100% LTV</th>
-	</tr>
-	<tr *ngFor="let rate of interestRateList">
-		<td>{{ rate.Hypotheek }}</td>
-		<td>{{ rate.NHG }}</td>
-		<td>{{ rate['60%'] }}</td>
-		<td>{{ rate['80%'] }}</td>
-		<td>{{ rate['100%'] }}</td>
-	</tr>
-</table>
+<div class="row">
+	<div class="col-md-10 offset-md-1">
+		<nav class="navbar navbar-light bg-light">
+			<form class="form-inline">
+				<label class="label mr-sm-2" for="duration">Select duration</label>
+				<select class="form-control mr-sm-2" id="duration" (change)="changePeriod($event)">​
+          <option value="1_jaar">1 year</option>​
+          <option value="10_jaar">10 years</option>​
+          <option value="20_jaar">20 years</option>​
+          <option value="30_jaar">30 years</option>​
+        </select>
+				<input class="form-control mr-sm-2" (input)="onSearchChange($event)" [value]="searchValue" placeholder="Search provider..." aria-label="Search">
+      </form>
+		</nav>
+		<div class="alert alert-light" role="alert" style="text-align : center" *ngIf="loading">
+			<app-loading-spinner>fetching data... hang on!</app-loading-spinner>
+		</div>
+		<table class="table table-hover" *ngIf="!loading">
+			<thead>
+				<tr>
+					<th scope="col">Geldverstrekker</th>
+					<th scope="col">NHG</th>
+					<th scope="col">60% LTV</th>
+					<th scope="col">80% LTV</th>
+					<th scope="col">100% LTV</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr scope="row" *ngFor="let rate of interestRateList">
+					<th>{{ rate.Hypotheek }}</th>
+					<td>{{ rate.NHG }}</td>
+					<td>{{ rate['60%'] }}</td>
+					<td>{{ rate['80%'] }}</td>
+					<td>{{ rate['100%'] }}</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>
