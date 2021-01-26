@@ -1,7 +1,5 @@
 import { HttpClient } from "@angular/common/http";
 import { Component, OnInit } from "@angular/core";
-import { pipe } from "rxjs";
-import { map } from "rxjs/operators";
 import { InterestService } from "../interest.service";
 
 interface InterestData {
