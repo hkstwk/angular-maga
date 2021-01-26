@@ -20,7 +20,7 @@ interface InterestData {
 })
 export class InterestRatesComponent implements OnInit {
   interestRateList: InterestData[] = [];
-  private interestRateListUnFiltered: InterestData[] = [];
+  filteredRateList: InterestData[] = [];
   searchValue: string = "";
   loading: boolean = false;
 
@@ -39,37 +39,22 @@ export class InterestRatesComponent implements OnInit {
     this.interestService
       .getInterestRates(period)
       .subscribe((interestRates: InterestData[]) => {
-        for (let rate of interestRates) {
-          this.interestRateList.push(rate);
-        }
-        // Copy interestRate[] to unfiltered []
-        this.interestRateListUnFiltered = this.interestRateList.slice();
-        // apply filter
-        if (this.searchValue != "") {
-          console.log("applying filter");
-          this.applyFilter();
-        }
-
+        this.interestRateList = interestRates;
+        this.applyFilter();
         this.loading = false;
       });
   }
 
   changePeriod(event) {
-    this.interestRateList = [];
     this.getInterestRates(event.target.value);
   }
 
   private applyFilter() {
-    // restore unfiltered []
-    this.interestRateList = this.interestRateListUnFiltered.slice();
-
-    // apply filter
-    this.interestRateList = this.interestRateList.filter(
-      (interestData: InterestData) => {
-        return interestData.Hypotheek.toLowerCase().includes(
+    this.filteredRateList = this.interestRateList.filter(
+      (interestData: InterestData) =>
+        interestData.Hypotheek.toLowerCase().includes(
           this.searchValue.toLowerCase()
-        );
-      }
+        )
     );
   }
 
