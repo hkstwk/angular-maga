@@ -26,7 +26,7 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr scope="row" *ngFor="let rate of filteredRateList">
+				<tr scope="row" *ngFor="let rate of filteredRateList; let i = index">
 					<th>{{ rate.Hypotheek }}</th>
 					<td>{{ rate.NHG }}</td>
 					<td>{{ rate['60%'] }}</td>

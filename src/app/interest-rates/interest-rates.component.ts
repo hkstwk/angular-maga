@@ -20,6 +20,7 @@ export class InterestRatesComponent implements OnInit {
   interestRateList: InterestData[] = [];
   filteredRateList: InterestData[] = [];
   searchValue: string = "";
+  sortKey: string = "";
   loading: boolean = false;
 
   constructor(
@@ -39,8 +40,9 @@ export class InterestRatesComponent implements OnInit {
       .subscribe((interestRates: InterestData[]) => {
         this.interestRateList = interestRates;
         this.applyFilter();
+        this.sort(this.sortKey);
         this.loading = false;
-      });
+      });    
   }
 
   changePeriod(event) {
@@ -58,6 +60,7 @@ export class InterestRatesComponent implements OnInit {
 
   sort(sortKey: string) {
     console.log(sortKey);
+    this.sortKey = sortKey;
     if (sortKey === "Hypotheek") {
       this.filteredRateList = this.interestRateList.sort((a, b) => {
         return a[sortKey].localeCompare(b[sortKey]);
@@ -67,6 +70,7 @@ export class InterestRatesComponent implements OnInit {
         return a[sortKey] - b[sortKey];
       });
     }
+    this.applyFilter();
   }
 
   onSearchChange(event) {
