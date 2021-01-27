@@ -56,6 +56,19 @@ export class InterestRatesComponent implements OnInit {
     );
   }
 
+  sort(sortKey: string) {
+    console.log(sortKey);
+    if (sortKey === "Hypotheek") {
+      this.filteredRateList = this.interestRateList.sort((a, b) => {
+        return a[sortKey].localeCompare(b[sortKey]);
+      });
+    } else {
+      this.filteredRateList = this.interestRateList.sort((a, b) => {
+        return a[sortKey] - b[sortKey];
+      });
+    }
+  }
+
   onSearchChange(event) {
     this.searchValue = event.target.value;
     this.applyFilter();

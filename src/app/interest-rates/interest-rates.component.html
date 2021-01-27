@@ -18,11 +18,11 @@
 		<table class="table table-hover" *ngIf="!loading">
 			<thead>
 				<tr>
-					<th scope="col">Geldverstrekker</th>
-					<th scope="col">NHG</th>
-					<th scope="col">60% LTV</th>
-					<th scope="col">80% LTV</th>
-					<th scope="col">100% LTV</th>
+					<th scope="col" (click)="sort('Hypotheek')" style="cursor: pointer">Geldverstrekker</th>
+					<th scope="col" (click)="sort('NHG')" style="cursor: pointer">NHG</th>
+					<th scope="col" (click)="sort('60%')" style="cursor: pointer">60% LTV</th>
+					<th scope="col" (click)="sort('80%')" style="cursor: pointer">80% LTV</th>
+					<th scope="col" (click)="sort('100%')" style="cursor: pointer">100% LTV</th>
 				</tr>
 			</thead>
 			<tbody>
